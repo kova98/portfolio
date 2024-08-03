@@ -1,6 +1,6 @@
 // types.ts
 export interface Project {
-  url: string;
+  url?: string;
   name: string;
 }
 
@@ -10,7 +10,7 @@ export interface Skill {
   level: string;
   experience: string;
   description: string;
-  projects: Project[];
+  references: Project[];
 }
 
 export interface SkillCategory {
