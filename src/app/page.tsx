@@ -37,13 +37,13 @@ const Home = () => {
             <h1 className="text-2xl font-bold text-center">Roko Kovač</h1>
             <h2 className="uppercase mt-2 mb-4 text-xl font-bold text-center">Software Developer</h2>
           </div>
-          <p className="pb-4 text-center mt-10 text-foreground">
+          <p className="pb-4 text-center pt-5 text-foreground">
             Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
             things, building fun side projects, and writing about software development.
           </p>
-          <ContactButton className="mt-10" />
-          <div className={'left-50 bottom-0 absolute scale-75'}>{socialMedia()}</div>
+          <ContactButton className="mt-3" />
         </div>
+        <div className={'left-50 bottom-0 absolute scale-50'}>{socialMedia()}</div>
       </div>
 
       {/* Desktop Hero Section */}
