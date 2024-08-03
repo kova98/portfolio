@@ -11,6 +11,7 @@ import { ChevronRightIcon } from '@radix-ui/react-icons';
 
 interface DetailedSkillCardProps {
   skill: Skill;
+  setSelectedSkill: (skill: Skill) => void;
 }
 
 const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelectedSkill }) => {
