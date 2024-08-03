@@ -2,6 +2,10 @@ import Image from 'next/image';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import ContactButton from '@/app/contact-button';
 import Navbar from '@/components/navbar';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar } from '@radix-ui/react-avatar';
+import TechBadge from '@/components/tech-badge';
+import Skills from '@/components/skills';
 
 const Home = () => {
   return (
@@ -46,19 +50,19 @@ const Home = () => {
       </div>
 
       {/* Skills Section */}
-      <div id="skills" className="flex flex-col h-screen items-center p-4 bg-foreground  text-background">
-        <div className={'p-10'}></div>
-        <h1 className="text-5xl font-bold mb-8">Here are some of the things I can do.</h1>
-      </div>
 
+      <Skills />
       {/* Projects Section */}
-      <div id="projects" className="flex flex-col h-screen justify-center items-center p-4 bg-background">
+      <div id="projects" className="flex flex-col min-h-screen justify-center items-center p-4 bg-background">
         <h1 className="text-4xl font-bold mb-8">Hobby Projects</h1>
         {/* Add your projects content here */}
       </div>
 
       {/* Blog Section */}
-      <div id="blog" className="flex flex-col h-screen justify-center items-center p-4 bg-foreground text-background">
+      <div
+        id="blog"
+        className="flex flex-col min-h-screen justify-center items-center p-4 bg-foreground text-background"
+      >
         <h2 className="text-4xl font-bold mb-8">Blog</h2>
         {/* Add your blog content here */}
       </div>
@@ -66,7 +70,7 @@ const Home = () => {
       {/* Contact Section */}
       <div
         id="contact"
-        className="flex flex-row h-screen p-4 justify-center align-middle bg-background text-foreground items-center"
+        className="flex flex-row min-h-screen p-4 justify-center align-middle bg-background text-foreground items-center"
       >
         <div className={'p-10'}></div>
         <h1 className="text-4xl font-bold mb-8">Let's get in touch!</h1>
