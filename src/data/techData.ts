@@ -140,7 +140,7 @@ const techData: SkillCategories = {
         level: 'Advanced',
         experience: '2 years',
         description:
-          "I've been using Flutter for hobby projects since 2021 and have built many apps with it. My app " +
+          "I've been using Flutter for hobby projects since 2021 and have built a few apps with it. My app " +
           'WCenzije has been published on Play Store and in production since December 2022',
         references: [
           { name: 'Spiza - Food delivery app', url: 'https://github.com/kova98/spiza' },
@@ -159,8 +159,8 @@ const techData: SkillCategories = {
         level: 'Expert',
         experience: '5 years',
         description:
-          "I've been programming in C# and .NET since high school, with 5 years of professional experience. " +
-          'I can build anything with it, from quick and dirty POCs and lean microservices to enterprise-grade ' +
+          "I've been programming in C# and .NET since high school, and have more than 5 years of professional experience. " +
+          'I can build anything from quick and dirty POCs and lean microservices to enterprise-grade ' +
           'fully test-covered solutions. I have written extensively on various .NET related topics and have published ' +
           'a quickstart guide on Unit Testing in .NET in the form of an eBook.',
         references: [

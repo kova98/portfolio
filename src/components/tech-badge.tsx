@@ -19,7 +19,8 @@ const TechBadge: React.FC<TechBadgeProps> = ({ tech, img, desc, selected, setSel
         <TooltipTrigger asChild>
           <button
             onClick={() => setSelected(tech)}
-            className={`shadow-sm rounded-lg w-14 h-14 flex justify-center items-center hover:shadow-md border ${isActive ? 'border-background shadow-md' : 'border-muted-foreground'} hover:border-background`}
+            className={`rounded-lg w-14 h-14 flex justify-center items-center hover:shadow-md border hover:border-background 
+            ${isActive ? 'border-background shadow-md border-2' : 'border-muted-foreground shadow-sm'}`}
           >
             <Image className="p-3" src={`/tech/${img}.png`} height={50} width={50} alt={tech} />
           </button>
