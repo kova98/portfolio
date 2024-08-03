@@ -8,7 +8,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed w-full bg-background text-muted-foreground z-50">
+    <div className="fixed w-full bg-background text-muted-foreground z-50 ">
       <div className="max-w-4xl space-x-5 mx-auto flex justify-center md:justify-start p-4 px-20 text-xl">
         <a href="#skills" className="hover:text-primary" onClick={(e) => scroll(e, 'skills')}>
           Skills

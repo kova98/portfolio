@@ -13,7 +13,7 @@ const ContactButton: React.FC<ContactButtonProps> = ({ className }) => {
   }
 
   return (
-    <Button onClick={contactClicked} className={`mt-10 ml-4 scale-125 ${className}`}>
+    <Button onClick={contactClicked} className={`mt-10 ml-4 scale-100 lg:scale-125 ${className}`}>
       Contact me
     </Button>
   );
