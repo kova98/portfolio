@@ -46,7 +46,7 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
           <ul className="list-disc list-inside pt-2">
             {skill.references.map((reference, index) => (
               <li key={index}>
-                <Button asChild variant="link" className={'text-background text-md'}>
+                <Button asChild variant="link" className={'text-background text-md text-wrap'}>
                   <Link href={reference.url ?? ''}>{reference.name}</Link>
                 </Button>
               </li>
@@ -67,6 +67,13 @@ const Skills: React.FC = () => {
       const skill = techData[category as keyof SkillCategories].skills.find((skill) => skill.tech === tech);
       if (skill) {
         setSelectedSkill(skill);
+
+        // On mobile, scroll to the detailed skill card when a skill is selected
+        if (!window.matchMedia('(min-width: 768px)').matches) {
+          const element = document.getElementById('skill-details');
+          // scroll to view, align to bottom
+          element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         return;
       }
     }
@@ -74,7 +81,7 @@ const Skills: React.FC = () => {
 
   // Renders the cards for each category of skills
   const skillCards = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center px-20">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
       {Object.entries(techData).map(([category, { description, skills }]) => (
         <Card key={category} className="bg-foreground text-background m-4 w-full max-w-sm">
           <CardHeader>
