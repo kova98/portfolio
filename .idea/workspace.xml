@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33a9c08c-d3ea-4765-b34b-b1ead2b7cd3a" name="Changes" comment="Add temp redirect to Medium">
-      <change afterPath="$PROJECT_DIR$/public/medium-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/roko.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contact-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/theme-provider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/next.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/vercel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="33a9c08c-d3ea-4765-b34b-b1ead2b7cd3a" name="Changes" comment="Add simple landing page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1722458609626</updated>
-      <workItem from="1722458614663" duration="11883000" />
+      <workItem from="1722458614663" duration="12829000" />
     </task>
     <task id="LOCAL-00001" summary="Set up new project">
       <option name="closed" value="true" />
@@ -92,7 +79,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722518095076</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add simple landing page">
+      <option name="closed" value="true" />
+      <created>1722642956109</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722642956109</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +97,7 @@
     <MESSAGE value="remove default content" />
     <MESSAGE value="Set up new project" />
     <MESSAGE value="Add temp redirect to Medium" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add temp redirect to Medium" />
+    <MESSAGE value="Add simple landing page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add simple landing page" />
   </component>
 </project>
