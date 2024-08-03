@@ -8,7 +8,8 @@ interface ContactButtonProps {
 
 const ContactButton: React.FC<ContactButtonProps> = ({ className }) => {
   function contactClicked() {
-    window.open('mailto:rokokovac98@gmail.com');
+    const element = document.getElementById('contact');
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
