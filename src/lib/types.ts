@@ -1,5 +1,6 @@
 // types.ts
 export interface Project {
+  url: string;
   name: string;
 }
 

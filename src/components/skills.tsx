@@ -5,6 +5,8 @@ import TechBadge from '@/components/tech-badge';
 import { useState } from 'react';
 import { Skill, SkillCategories } from '@/lib/types';
 import techData from '@/components/techData';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface DetailedSkillCardProps {
   skill: Skill;
@@ -12,21 +14,21 @@ interface DetailedSkillCardProps {
 
 const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill }) => {
   return (
-    <Card className="bg-foreground text-background m-4 w-full max-w-lg mx-auto">
-      <CardHeader>
-        <CardTitle>{skill.tech}</CardTitle>
-        <CardDescription className="text-muted-foreground">{skill.level}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="mt-2">{skill.description}</p>
-        <h3 className="text-2xl font-semibold mt-4">References</h3>
-        <ul className="list-disc list-inside">
-          {skill.projects.map((project, index) => (
-            <li key={index}>{project.name}</li>
-          ))}
-        </ul>
-      </CardContent>
-    </Card>
+    <div className="bg-foreground text-background mt-8 p-8 rounded-lg w-full max-w-4xl mx-auto" id="skill-details">
+      <h2 className="text-4xl font-bold mb-4">{skill.tech}</h2>
+      <p className="text-lg text-muted-foreground mb-4">{skill.level}</p>
+      <p className="pt-2 text-base">{skill.description}</p>
+      <h3 className="text-2xl font-semibold mt-6">References</h3>
+      <ul className="list-disc list-inside mt-2">
+        {skill.projects.map((reference, index) => (
+          <li key={index}>
+            <Button asChild variant="link" className={'text-background text-md'}>
+              <Link href={reference.url ?? ''}>{reference.name}</Link>
+            </Button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
@@ -46,6 +48,8 @@ const Skills: React.FC = () => {
       const skill = techData[category as keyof SkillCategories].skills.find((skill) => skill.tech === tech);
       if (skill) {
         setSelectedSkill(skill);
+        // const element = document.getElementById('skill-details');
+        // element?.scrollIntoView({ behavior: 'smooth' });
         return;
       }
     }
@@ -80,13 +84,15 @@ const Skills: React.FC = () => {
   );
 
   return (
-    <div id="skills" className="flex flex-col min-h-screen items-center p-4 bg-foreground text-background">
-      <div className="p-10"></div>
-      <h1 className="text-5xl font-bold">Here are some of the things I can do.</h1>
-      <div className="p-10"></div>
-      {skillCards()}
-      {selectedSkill && <DetailedSkillCard skill={selectedSkill} />}
-    </div>
+    <>
+      <div id="skills" className="flex flex-col min-h-screen items-center p-4 bg-foreground text-background">
+        <div className="p-10"></div>
+        <h1 className="text-5xl font-bold">Here are some of the things I can do.</h1>
+        <div className="p-10"></div>
+        {skillCards()}
+        {selectedSkill && <DetailedSkillCard skill={selectedSkill} />}
+      </div>
+    </>
   );
 };
 
