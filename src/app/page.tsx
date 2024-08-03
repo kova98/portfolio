@@ -23,9 +23,10 @@ const Home = () => {
             </div>
 
             <p className="pb-4 text-center lg:text-left mt-10 text-xl text-foreground">
-              Hi, I’m Roko — a Software Developer with 5+ years of professional experience. I love learning new things,
-              building fun side projects, and writing about software development.
+              Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
+              things, building fun side projects, and writing about software development.
             </p>
+
             <ContactButton className="mt-10" />
           </div>
           <div className="flex flex-col items-center lg:items-center lg:w-2/5">
@@ -49,8 +50,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Skills Section */}
-
       <Skills />
       {/* Projects Section */}
       <div id="projects" className="flex flex-col min-h-screen justify-center items-center p-4 bg-background">
@@ -73,7 +72,7 @@ const Home = () => {
         className="flex flex-row min-h-screen p-4 justify-center align-middle bg-background text-foreground items-center"
       >
         <div className={'p-10'}></div>
-        <h1 className="text-4xl font-bold mb-8">Let's get in touch!</h1>
+        <h1 className="text-4xl font-bold mb-8">Let&rsquo;s get in touch!</h1>
         {/* Add your contact content here */}
       </div>
     </div>
