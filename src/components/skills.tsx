@@ -40,16 +40,20 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
       </div>
       <p className="text-lg text-muted-foreground mb-4">{skill.level}</p>
       <p className="pt-2 text-base">{skill.description}</p>
-      <h3 className="text-2xl font-semibold pt-6">References</h3>
-      <ul className="list-disc list-inside pt-2">
-        {skill.references.map((reference, index) => (
-          <li key={index}>
-            <Button asChild variant="link" className={'text-background text-md'}>
-              <Link href={reference.url ?? ''}>{reference.name}</Link>
-            </Button>
-          </li>
-        ))}
-      </ul>
+      {skill.references.length > 0 && (
+        <>
+          <h3 className="text-2xl font-semibold pt-6">References</h3>
+          <ul className="list-disc list-inside pt-2">
+            {skill.references.map((reference, index) => (
+              <li key={index}>
+                <Button asChild variant="link" className={'text-background text-md'}>
+                  <Link href={reference.url ?? ''}>{reference.name}</Link>
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
