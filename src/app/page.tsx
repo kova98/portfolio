@@ -28,22 +28,24 @@ const Home = () => {
       <Navbar />
 
       {/* Mobile Hero Section */}
-      <div className="flex-col h-screen justify-center items-center p-4 flex lg:hidden">
+      <div className="flex flex-col h-screen justify-between items-center p-4 lg:hidden">
+        <div className={'flex-grow'}></div>
         <div className="flex flex-col items-center">
           <div className="relative w-48 h-48">
             <Image src="/roko.jpg" alt="portrait" layout="fill" objectFit="cover" className="rounded-full" />
           </div>
           <div className="flex flex-col items-center mt-4">
-            <h1 className="text-2xl font-bold text-center">Roko Kovač</h1>
+            <h1 className="text-4xl font-bold text-center">Roko Kovač</h1>
             <h2 className="uppercase mt-2 mb-4 text-xl font-bold text-center">Software Developer</h2>
           </div>
           <p className="pb-4 text-center pt-5 text-foreground">
             Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
             things, building fun side projects, and writing about software development.
           </p>
-          <ContactButton className="mt-3" />
+          <ContactButton className="mt-3 w-full" />
         </div>
-        <div className={'left-50 bottom-0 absolute scale-50'}>{socialMedia()}</div>
+        <div className={'flex-grow'}></div>
+        <div className="scale-50">{socialMedia()}</div>
       </div>
 
       {/* Desktop Hero Section */}
