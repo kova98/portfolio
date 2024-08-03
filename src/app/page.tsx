@@ -51,6 +51,7 @@ const Home = () => {
       </div>
 
       <Skills />
+
       {/* Projects Section */}
       <div id="projects" className="flex flex-col min-h-screen justify-center items-center p-4 bg-background">
         <h1 className="text-4xl font-bold mb-8">Hobby Projects</h1>

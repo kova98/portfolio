@@ -2,19 +2,15 @@ import React from 'react';
 import Image from 'next/image';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
-function TechBadge({
-  tech,
-  img,
-  desc,
-  selected,
-  setSelected,
-}: {
+interface TechBadgeProps {
   tech: string;
   img: string;
   desc: string;
   selected: string;
   setSelected: (tech: string) => void;
-}) {
+}
+
+const TechBadge: React.FC<TechBadgeProps> = ({ tech, img, desc, selected, setSelected }) => {
   const isActive = selected === tech;
 
   return (
@@ -34,6 +30,6 @@ function TechBadge({
       </Tooltip>
     </TooltipProvider>
   );
-}
+};
 
 export default TechBadge;
