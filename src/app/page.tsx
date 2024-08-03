@@ -42,7 +42,7 @@ const Home = () => {
             Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
             things, building fun side projects, and writing about software development.
           </p>
-          <ContactButton className="mt-3 w-full" />
+          <ContactButton className="mt-3" />
         </div>
         <div className={'flex-grow'}></div>
         <div className="scale-50">{socialMedia()}</div>
