@@ -58,7 +58,7 @@ function Projects(props) {
       {/*<h1 className="text-5xl font-bold">Hobby Projects</h1>*/}
       {/*<h1 className="pt-5 text-xl">I love coding for fun. Here are some of my projects.</h1>*/}
 
-      <div className={'pt-10 flex flex-row flex-wrap gap-4 justify-center'}>
+      <div className={'pt-10 px-0 flex flex-row flex-wrap gap-4 justify-center'}>
         {projectsData.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}

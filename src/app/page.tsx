@@ -33,7 +33,9 @@ const Home = () => {
         <div className={'flex-grow'}></div>
         <div className="flex flex-col items-center">
           <div className="relative w-48 h-48">
-            <Image src="/roko.jpg" alt="portrait" layout="fill" objectFit="cover" className="rounded-full" />
+            <Image src="/roko.jpg" height={250} width={250} className={'rounded-full'} alt="portrait" />
+
+            {/*<Image src="/roko.jpg" alt="portrait" layout="fill" objectFit="cover" className="rounded-full" />*/}
           </div>
           <div className="flex flex-col items-center mt-4">
             <h1 className="text-4xl font-bold text-center">Roko Kovač</h1>
@@ -70,7 +72,7 @@ const Home = () => {
           </div>
           <div className="flex flex-col items-center lg:items-center lg:w-2/5">
             <div className="relative w-64 h-64">
-              <Image src="/roko.jpg" alt="portrait" layout="fill" objectFit="cover" className="rounded-full" />
+              <Image src="/roko.jpg" height={250} width={250} className={'rounded-full'} alt="portrait" />
             </div>
             <div className={'flex-grow'}></div>
             <div className={' pt-24'}>{socialMedia()}</div>

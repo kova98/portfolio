@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import TechBadge from '@/components/tech-badge';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Skill, SkillCategories } from '@/lib/models/skill';
 import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
@@ -26,7 +26,10 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
   }
 
   return (
-    <div className="bg-foreground text-background mt-8 p-8 rounded-lg w-full max-w-4xl mx-auto" id="skill-details">
+    <div
+      className="bg-foreground text-background p-8 pb-16 lg:pb-0 pt-16 rounded-lg w-full max-w-4xl mx-auto"
+      id="skill-details"
+    >
       <div className={'flex flex-row justify-between'}>
         <h2 className="text-4xl font-bold pb-4">{skill.tech}</h2>
         <Button
@@ -68,23 +71,27 @@ const Skills: React.FC = () => {
       const skill = skillsData[category as keyof SkillCategories].skills.find((skill) => skill.tech === tech);
       if (skill) {
         setSelectedSkill(skill);
-
-        // On mobile, scroll to the detailed skill card when a skill is selected
-        if (!window.matchMedia('(min-width: 768px)').matches) {
-          const element = document.getElementById('skill-details');
-          // scroll to view, align to bottom
-          element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
         return;
       }
     }
   };
 
+  useEffect(() => {
+    // On mobile, scroll to the detailed skill card when a skill is selected
+    if (!window.matchMedia('(min-width: 768px)').matches) {
+      const element = document.getElementById('skill-details');
+      if (element) {
+        // scroll to view, align to bottom
+        element.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    }
+  }, [selectedSkill]); // Run the effect when selectedSkill changes
+
   // Renders the cards for each category of skills
   const skillCards = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
       {Object.entries(skillsData).map(([category, { description, skills }]) => (
-        <Card key={category} className="bg-foreground text-background m-4 w-full max-w-sm">
+        <Card key={category} className="bg-foreground text-backgroundw-full max-w-md md:max-w-72">
           <CardHeader>
             <CardTitle>{category}</CardTitle>
             <CardDescription className="text-card">{description}</CardDescription>
@@ -112,7 +119,7 @@ const Skills: React.FC = () => {
     <>
       <div id="skills" className="flex flex-col min-h-screen items-center p-4 bg-foreground text-background">
         <div className="p-10"></div>
-        <h1 className="text-5xl font-bold">Here are some of the things I can do</h1>
+        <h1 className="text-5xl font-bold text-center">Here are some of the things I can do</h1>
         <div className="p-10"></div>
         {/* TODO: summary toggle and display */}
         {skillCards()}
