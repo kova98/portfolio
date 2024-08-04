@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
   return (
     <div id="projects" className="flex flex-col min-h-screen justify-center p-10 bg-background">
       <h1 className="text-center pt-7 text-5xl font-bold">I love coding for fun</h1>
-      <h1 className="text-center pt-5 text-xl">Here are some of my projects</h1>
+      <h1 className="text-center pt-5 text-xl">Check out some of my projects</h1>
 
       <div className={'pt-10 px-0 flex flex-row flex-wrap gap-4 justify-center'}>
         {projectsData.map((project, index) => (
