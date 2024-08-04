@@ -3,8 +3,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import TechBadge from '@/components/tech-badge';
 import { useState } from 'react';
-import { Skill, SkillCategories } from '@/lib/types';
-import techData from '@/data/techData';
+import { Skill, SkillCategories } from '@/lib/models/skill';
+import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
@@ -16,7 +16,7 @@ interface DetailedSkillCardProps {
 
 const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelectedSkill }) => {
   function nextSkill(skill: Skill) {
-    const allSkills = Object.values(techData).flatMap((category) => category.skills);
+    const allSkills = Object.values(skillsData).flatMap((category) => category.skills);
     const currentIndex = allSkills.findIndex((s) => s.tech === skill.tech);
     return allSkills[(currentIndex + 1) % allSkills.length];
   }
@@ -60,12 +60,12 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
 };
 
 const Skills: React.FC = () => {
-  const dotnet = techData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
+  const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(dotnet); // Stores the selected skill object
 
   const handleSkillSelection = (tech: string) => {
-    for (const category in techData) {
-      const skill = techData[category as keyof SkillCategories].skills.find((skill) => skill.tech === tech);
+    for (const category in skillsData) {
+      const skill = skillsData[category as keyof SkillCategories].skills.find((skill) => skill.tech === tech);
       if (skill) {
         setSelectedSkill(skill);
 
@@ -83,7 +83,7 @@ const Skills: React.FC = () => {
   // Renders the cards for each category of skills
   const skillCards = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
-      {Object.entries(techData).map(([category, { description, skills }]) => (
+      {Object.entries(skillsData).map(([category, { description, skills }]) => (
         <Card key={category} className="bg-foreground text-background m-4 w-full max-w-sm">
           <CardHeader>
             <CardTitle>{category}</CardTitle>
@@ -112,7 +112,7 @@ const Skills: React.FC = () => {
     <>
       <div id="skills" className="flex flex-col min-h-screen items-center p-4 bg-foreground text-background">
         <div className="p-10"></div>
-        <h1 className="text-5xl font-bold">Here are some of the things I can do.</h1>
+        <h1 className="text-5xl font-bold">Here are some of the things I can do</h1>
         <div className="p-10"></div>
         {/* TODO: summary toggle and display */}
         {skillCards()}

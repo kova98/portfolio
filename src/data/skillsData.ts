@@ -1,6 +1,6 @@
-import { SkillCategories } from '@/lib/types';
+import { SkillCategories } from '@/lib/models/skill';
 
-const techData: SkillCategories = {
+const skillsData: SkillCategories = {
   Web: {
     description: 'I can create web interfaces using a variety of technologies.',
     skills: [
@@ -310,4 +310,4 @@ const techData: SkillCategories = {
   },
 };
 
-export default techData;
+export default skillsData;

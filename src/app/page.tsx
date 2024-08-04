@@ -3,6 +3,7 @@ import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import ContactButton from '@/app/contact-button';
 import Navbar from '@/components/navbar';
 import Skills from '@/components/skills';
+import Projects from '@/components/projects';
 
 const Home = () => {
   function socialMedia() {
@@ -78,17 +79,10 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Skills Section */}
-
       <Skills />
 
-      {/* Projects Section */}
-      <div id="projects" className="flex flex-col min-h-screen justify-center items-center p-4 bg-background">
-        <h1 className="text-4xl font-bold mb-8">Hobby Projects</h1>
-        {/* Add your projects content here */}
-      </div>
+      <Projects />
 
-      {/* Blog Section */}
       <div
         id="blog"
         className="flex flex-col min-h-screen justify-center items-center p-4 bg-foreground text-background"
