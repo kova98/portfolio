@@ -4,6 +4,7 @@ import ContactButton from '@/app/contact-button';
 import Navbar from '@/components/navbar';
 import Skills from '@/components/skills';
 import Projects from '@/components/projects';
+import Blog from '@/components/blog';
 
 const Home = () => {
   function socialMedia() {
@@ -85,13 +86,7 @@ const Home = () => {
 
       <Projects />
 
-      <div
-        id="blog"
-        className="flex flex-col min-h-screen justify-center items-center p-4 bg-foreground text-background"
-      >
-        <h2 className="text-4xl font-bold mb-8">Blog</h2>
-        {/* Add your blog content here */}
-      </div>
+      <Blog />
 
       {/* Contact Section */}
       <div
