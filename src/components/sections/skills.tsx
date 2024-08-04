@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import TechBadge from '@/components/tech-badge';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Skill, SkillCategories } from '@/lib/models/skill';
 import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
@@ -27,8 +27,8 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
 
   return (
     <div
-      className="bg-foreground text-background p-8 pb-16 lg:pb-0 pt-16 rounded-lg w-full max-w-4xl mx-auto"
       id="skill-details"
+      className="bg-foreground text-background p-8 pb-16 pt-16 rounded-lg w-full max-w-4xl mx-auto"
     >
       <div className={'flex flex-row justify-between'}>
         <h2 className="text-4xl font-bold pb-4">{skill.tech}</h2>
@@ -64,7 +64,23 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
 
 const Skills: React.FC = () => {
   const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
-  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(dotnet); // Stores the selected skill object
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(dotnet);
+  const renders = useRef(0);
+
+  useEffect(() => {
+    // Hack to stop autoscroll on initial page render
+    renders.current += 1;
+    if (renders.current > 2) {
+      const element = document.getElementById('skill-details');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }, [selectedSkill]);
+
+  useEffect(() => {
+    setSelectedSkill(dotnet);
+  }, []);
 
   const handleSkillSelection = (tech: string) => {
     for (const category in skillsData) {
@@ -76,20 +92,10 @@ const Skills: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    // On mobile, scroll to the detailed skill card when a skill is selected
-    if (!window.matchMedia('(min-width: 768px)').matches) {
-      const element = document.getElementById('skill-details');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }
-    }
-  }, [selectedSkill]);
-
   const skillCards = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
       {Object.entries(skillsData).map(([category, { description, skills }]) => (
-        <Card key={category} className="bg-foreground text-backgroundw-full max-w-md md:max-w-72">
+        <Card key={category} className="bg-foreground text-background w-full max-w-md md:max-w-72">
           <CardHeader>
             <CardTitle>{category}</CardTitle>
             <CardDescription className="text-card">{description}</CardDescription>
