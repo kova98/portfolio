@@ -81,13 +81,11 @@ const Skills: React.FC = () => {
     if (!window.matchMedia('(min-width: 768px)').matches) {
       const element = document.getElementById('skill-details');
       if (element) {
-        // scroll to view, align to bottom
         element.scrollIntoView({ behavior: 'smooth', block: 'end' });
       }
     }
-  }, [selectedSkill]); // Run the effect when selectedSkill changes
+  }, [selectedSkill]);
 
-  // Renders the cards for each category of skills
   const skillCards = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 justify-items-center px-0 lg:px-20">
       {Object.entries(skillsData).map(([category, { description, skills }]) => (

@@ -1,10 +1,12 @@
 import Image from 'next/image';
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
-import ContactButton from '@/app/contact-button';
+import { EnvelopeOpenIcon, GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
+import ContactButton from '@/components/contact-button';
 import Navbar from '@/components/navbar';
-import Skills from '@/components/skills';
-import Projects from '@/components/projects';
-import Blog from '@/components/blog';
+import Skills from '@/components/sections/skills';
+import Projects from '@/components/sections/projects';
+import Blog from '@/components/sections/blog';
+import { Button } from '@/components/ui/button';
+import Contact from '@/components/sections/contact';
 
 const Home = () => {
   function socialMedia() {
@@ -88,15 +90,7 @@ const Home = () => {
 
       <Blog />
 
-      {/* Contact Section */}
-      <div
-        id="contact"
-        className="flex flex-row min-h-screen p-4 justify-center align-middle bg-background text-foreground items-center"
-      >
-        <div className={'p-10'}></div>
-        <h1 className="text-4xl font-bold mb-8">Let&rsquo;s get in touch!</h1>
-        {/* Add your contact content here */}
-      </div>
+      <Contact />
     </div>
   );
 };
