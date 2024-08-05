@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import TechBadge from '@/components/tech-badge';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Reference, Skill, SkillCategories } from '@/lib/models/skill';
 import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
@@ -65,26 +65,22 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
 };
 
 const Skills: React.FC = () => {
-  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
+  const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(dotnet);
   const renders = useRef(0);
 
   useEffect(() => {
-    console.log('selectedSkill', selectedSkill);
     // TODO: Figure out why this happens and how to fix it properly
     // Hack to stop autoscroll on initial page render
     renders.current += 1;
-    if (renders.current > 3) {
+
+    if (renders.current > 2 || selectedSkill != dotnet) {
       const element = document.getElementById('skill-details');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
   }, [selectedSkill]);
-
-  useEffect(() => {
-    const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
-    setSelectedSkill(dotnet);
-  }, []);
 
   const handleSkillSelection = (tech: string) => {
     for (const category in skillsData) {
