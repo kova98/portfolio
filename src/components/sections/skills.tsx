@@ -65,14 +65,15 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
 };
 
 const Skills: React.FC = () => {
-  const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
-  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(dotnet);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const renders = useRef(0);
 
   useEffect(() => {
+    console.log('selectedSkill', selectedSkill);
+    // TODO: Figure out why this happens and how to fix it properly
     // Hack to stop autoscroll on initial page render
     renders.current += 1;
-    if (renders.current > 2) {
+    if (renders.current > 3) {
       const element = document.getElementById('skill-details');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -81,6 +82,7 @@ const Skills: React.FC = () => {
   }, [selectedSkill]);
 
   useEffect(() => {
+    const dotnet = skillsData['Backend'].skills.find((skill) => skill.tech === '.NET / C#')!;
     setSelectedSkill(dotnet);
   }, []);
 
