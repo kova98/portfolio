@@ -6,7 +6,7 @@ interface TrackedLinkProps {
   href: string;
   event: string;
   eventData?: {};
-  children: string;
+  children: React.ReactNode;
 }
 
 const TrackedLink: React.FC<TrackedLinkProps> = ({ href, event, eventData, children }) => {
