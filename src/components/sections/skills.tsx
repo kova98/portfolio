@@ -3,10 +3,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import TechBadge from '@/components/tech-badge';
 import { useState, useEffect, useRef } from 'react';
-import { Skill, SkillCategories } from '@/lib/models/skill';
+import { Reference, Skill, SkillCategories } from '@/lib/models/skill';
 import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
+import TrackedLink from '@/components/tracked-link';
 
 interface DetailedSkillCardProps {
   skill: Skill;
@@ -49,8 +50,10 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
           <ul className="list-disc list-outside pt-2 pl-4">
             {skill.references.map((reference, index) => (
               <li key={index}>
-                <Button asChild variant="link" className={'text-background text-md text-wrap'}>
-                  <a href={reference.url ?? ''}>{reference.name}</a>
+                <Button variant="link" className={'text-background text-md text-wrap text-left'}>
+                  <TrackedLink href={reference.url ?? ''} event={'skill_reference_clicked'} eventData={reference}>
+                    {reference.name}
+                  </TrackedLink>
                 </Button>
               </li>
             ))}

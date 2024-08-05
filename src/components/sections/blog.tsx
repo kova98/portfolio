@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Image from 'next/image';
 import { BlogPost } from '@/lib/models/blog';
 import blogData from '@/data/blogData';
+import TrackedLink from '@/components/tracked-link';
 
 const Blog: React.FC = () => {
   type BlogCardProps = {
@@ -10,7 +11,11 @@ const Blog: React.FC = () => {
   };
 
   const BlogCard: React.FC<BlogCardProps> = ({ post }) => (
-    <a href={post.mediumUrl}>
+    <TrackedLink
+      href={post.mediumUrl}
+      event={'blogpost_clicked'}
+      eventData={{ title: post.title, url: post.mediumUrl }}
+    >
       <Card className={'flex flex-col hover:shadow-lg hover:cursor-pointer'}>
         <CardHeader className={'min-h-0 md:min-h-28'}>
           <CardTitle>{post.title}</CardTitle>
@@ -29,7 +34,7 @@ const Blog: React.FC = () => {
           </div>
         </CardContent>
       </Card>
-    </a>
+    </TrackedLink>
   );
 
   return (

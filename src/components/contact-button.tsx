@@ -1,15 +1,18 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { usePostHog } from 'posthog-js/react';
 
 interface ContactButtonProps {
   className?: string;
 }
 
 const ContactButton: React.FC<ContactButtonProps> = ({ className }) => {
+  const postHog = usePostHog();
   function contactClicked() {
     const element = document.getElementById('contact');
     element?.scrollIntoView({ behavior: 'smooth' });
+    postHog.capture('contact_button_clicked');
   }
 
   return (

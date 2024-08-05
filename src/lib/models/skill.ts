@@ -13,10 +13,10 @@ export interface Skill {
   level: string;
   experience: string;
   description: string;
-  references: Project[];
+  references: Reference[];
 }
 
-export interface Project {
+export interface Reference {
   url?: string;
   name: string;
 }

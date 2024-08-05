@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Project } from '@/lib/models/project';
 import projectsData from '@/data/projectsData';
+import TrackedLink from '@/components/tracked-link';
 
 const Projects: React.FC = () => {
   type ProjectCardProps = {
@@ -37,14 +38,26 @@ const Projects: React.FC = () => {
       </CardContent>
       <div className="flex-grow"></div>
       <CardFooter className={'flex flex-row justify-between align-bottom'}>
-        {project.repoLink && (
+        {project.repoUrl && (
           <Button asChild variant="outline">
-            <Link href={project.repoLink}>Repository</Link>
+            <TrackedLink
+              href={project.repoUrl}
+              event={'project_repo_clicked'}
+              eventData={{ name: project.title, url: project.repoUrl }}
+            >
+              Repository
+            </TrackedLink>
           </Button>
         )}
-        {project.websiteLink && (
+        {project.websiteUrl && (
           <Button asChild variant="outline">
-            <Link href={project.websiteLink}>Website</Link>
+            <TrackedLink
+              href={project.websiteUrl}
+              event={'project_website_clicked'}
+              eventData={{ name: project.title, url: project.websiteUrl }}
+            >
+              Website
+            </TrackedLink>
           </Button>
         )}
       </CardFooter>
