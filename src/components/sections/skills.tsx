@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Skill, SkillCategories } from '@/lib/models/skill';
 import skillsData from '@/data/skillsData';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
 
 interface DetailedSkillCardProps {
@@ -47,11 +46,11 @@ const DetailedSkillCard: React.FC<DetailedSkillCardProps> = ({ skill, setSelecte
       {skill.references.length > 0 && (
         <>
           <h3 className="text-2xl font-semibold pt-6">References</h3>
-          <ul className="list-disc list-inside pt-2">
+          <ul className="list-disc list-outside pt-2 pl-4">
             {skill.references.map((reference, index) => (
               <li key={index}>
                 <Button asChild variant="link" className={'text-background text-md text-wrap'}>
-                  <Link href={reference.url ?? ''}>{reference.name}</Link>
+                  <a href={reference.url ?? ''}>{reference.name}</a>
                 </Button>
               </li>
             ))}
