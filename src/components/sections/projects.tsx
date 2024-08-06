@@ -20,7 +20,9 @@ const Projects: React.FC = () => {
         <CardDescription>{project.description}</CardDescription>
         <div className={'flex flex-row flex-wrap gap-1 pt-3'}>
           {project.technologies.map((tech, index) => (
-            <Badge key={index}>{tech}</Badge>
+            <Badge variant={'outline'} key={index}>
+              {tech}
+            </Badge>
           ))}
         </div>
       </CardHeader>
@@ -39,7 +41,7 @@ const Projects: React.FC = () => {
       <div className="flex-grow"></div>
       <CardFooter className={'flex flex-row justify-between align-bottom'}>
         {project.repoUrl && (
-          <Button asChild variant="outline">
+          <Button>
             <TrackedLink
               href={project.repoUrl}
               event={'project_repo_clicked'}
@@ -50,7 +52,7 @@ const Projects: React.FC = () => {
           </Button>
         )}
         {project.websiteUrl && (
-          <Button asChild variant="outline">
+          <Button>
             <TrackedLink
               href={project.websiteUrl}
               event={'project_website_clicked'}
