@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons';
 import ContactButton from '@/components/contact-button';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/navbar/navbar';
 import Skills from '@/components/sections/skills';
 import Projects from '@/components/sections/projects';
 import Blog from '@/components/sections/blog';
