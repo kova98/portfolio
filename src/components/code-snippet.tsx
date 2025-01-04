@@ -8,6 +8,7 @@ import { Check, Clipboard } from 'lucide-react';
 
 interface CodeSnippetProps {
   code: string;
+  language: string;
 }
 
 export const CodeSnippet: React.FC<CodeSnippetProps> = ({ code, language = 'csharp' }) => {

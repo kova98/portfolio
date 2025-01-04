@@ -92,7 +92,7 @@ export default async function DiaryEntryPage({
           </time>
           
           <div className="prose prose-slate max-w-none pt-6">
-            <MarkdownRenderer markdown={entry.content} />
+            <MarkdownRenderer markdown={entry.content!} />
           </div>
         </div>
       </div>
