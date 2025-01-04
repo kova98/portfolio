@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 async function getWeeks(): Promise<WeekEntry[]> {
-  const response = await fetch('http://localhost:8080/weeks', {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/weeks`, {
     cache: 'no-store',
   });
 
