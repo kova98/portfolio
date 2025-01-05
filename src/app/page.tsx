@@ -7,6 +7,8 @@ import Projects from '@/components/sections/projects';
 import Blog from '@/components/sections/blog';
 import Contact from '@/components/sections/contact';
 
+const intro = "Hi, I&rsquo;m Roko — a Software Developer with 6+ years of professional experience. I love learning new things, building fun side projects, and writing about software development."
+
 const Home = () => {
   function socialMedia() {
     return (
@@ -42,8 +44,7 @@ const Home = () => {
             <h2 className="uppercase mt-2 mb-4 text-xl font-bold text-center">Software Developer</h2>
           </div>
           <p className="pb-4 text-center pt-5 text-foreground">
-            Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
-            things, building fun side projects, and writing about software development.
+            {intro}
           </p>
           <ContactButton className="mt-3" />
         </div>
@@ -64,8 +65,8 @@ const Home = () => {
             </div>
 
             <p className="pb-4 text-center lg:text-left mt-10 text-xl text-foreground">
-              Hi, I&rsquo;m Roko — a Software Developer with 5+ years of professional experience. I love learning new
-              things, building fun side projects, and writing about software development.
+              {intro}
+            
             </p>
 
             <ContactButton className="mt-10" />
