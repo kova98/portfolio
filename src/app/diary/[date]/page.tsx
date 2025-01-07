@@ -38,11 +38,12 @@ async function getDayNavigation(date: string): Promise<DayNavigation> {
   return response.json();
 }
 
-export default async function DiaryEntryPage({
-  params,
-}: {
-  params: { date: string };
-}) {
+export default async function DiaryEntryPage(
+  props: {
+    params: Promise<{ date: string }>;
+  }
+) {
+  const params = await props.params;
   const [entry, navigation] = await Promise.all([
     getDayEntry(params.date),
     getDayNavigation(params.date),
