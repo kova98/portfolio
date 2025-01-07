@@ -7,7 +7,6 @@ if (typeof window !== 'undefined') {
   posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
     api_host: '/ingest',
     ui_host: 'https://eu.posthog.com',
-    capture_pageview: false, // Disable automatic pageview capture, as we capture manually
   });
 }
 
