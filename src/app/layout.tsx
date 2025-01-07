@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import dynamic from 'next/dynamic';
 import { PHProvider } from '@/components/providers/posthog-provider';
+import PostHogPageView from './PostHogPageView';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   title: 'Roko Kovač',
   description: 'Roko Kovač - Software Developer',
 };
-
-const PostHogPageView = dynamic(() => import('./posthog-pageview'), {
-  ssr: false,
-});
 
 export default function RootLayout({
   children,
