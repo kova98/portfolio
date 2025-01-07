@@ -15,15 +15,15 @@ async function getWeeks(): Promise<WeekEntry[]> {
   }
 
   const weeks = await response.json();
-  
+
   // Add week number to each entry
   // For the first item (oldest), week = total length
   // For the last item (newest), week = 1
   const weeksWithNumber = weeks.map((week: WeekEntry, index: number) => ({
     ...week,
-    week: weeks.length - index // If there are 11 weeks, first item gets 11, last gets 1
+    week: weeks.length - index, // If there are 11 weeks, first item gets 11, last gets 1
   }));
-  
+
   // Sort by week number in descending order to show highest numbers first
   return weeksWithNumber.sort((a: WeekEntry, b: WeekEntry) => b.week - a.week);
 }
@@ -43,22 +43,27 @@ export default async function DiaryPage() {
             challenges faced.
           </p>
 
-<Link href="https://www.codeinteractive.dev"> 
-          <div className="flex items-center gap-6 mt-8 p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border">
-            <div className="shrink-0 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-              <Image src="/projects/codeinteractive-logo.png" alt="logo" width={300} height={200} className="rounded-full" />
-            </div>
-            <div className="space-y-1">
-              <div className="text-sm font-medium flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-primary" />
-                Currently building
+          <Link href="https://www.codeinteractive.dev">
+            <div className="flex items-center gap-6 mt-8 p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border">
+              <div className="shrink-0 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <Image
+                  src="/projects/codeinteractive-logo.png"
+                  alt="logo"
+                  width={300}
+                  height={200}
+                  className="rounded-full"
+                />
               </div>
-              <div className="text-2xl font-bold text-primary">CodeInteractive</div>
-              <div className="text-sm text-muted-foreground">Interactive .NET tutorials platform</div>
+              <div className="space-y-1">
+                <div className="text-sm font-medium flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  Currently building
+                </div>
+                <div className="text-2xl font-bold text-primary">CodeInteractive</div>
+                <div className="text-sm text-muted-foreground">Interactive .NET tutorials platform</div>
+              </div>
             </div>
-          </div>
           </Link>
-
         </div>
 
         <div className="space-y-6">

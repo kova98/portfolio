@@ -7,7 +7,8 @@ import Projects from '@/components/sections/projects';
 import Blog from '@/components/sections/blog';
 import Contact from '@/components/sections/contact';
 
-const intro = "Hi, I&rsquo;m Roko — a Software Developer with 6+ years of professional experience. I love learning new things, building fun side projects, and writing about software development."
+const intro =
+  "Hi, I'm Roko — a Software Developer with 6+ years of professional experience. I love learning new things, building fun side projects, and writing about software development.";
 
 const Home = () => {
   function socialMedia() {
@@ -43,9 +44,7 @@ const Home = () => {
             <h1 className="text-4xl font-bold text-center">Roko Kovač</h1>
             <h2 className="uppercase mt-2 mb-4 text-xl font-bold text-center">Software Developer</h2>
           </div>
-          <p className="pb-4 text-center pt-5 text-foreground">
-            {intro}
-          </p>
+          <p className="pb-4 text-center pt-5 text-foreground">{intro}</p>
           <ContactButton className="mt-3" />
         </div>
         <div className={'flex-grow'}></div>
@@ -64,10 +63,7 @@ const Home = () => {
               <h2 className="uppercase mt-2 mb-4 text-xl font-bold text-center lg:text-left">Software Developer</h2>
             </div>
 
-            <p className="pb-4 text-center lg:text-left mt-10 text-xl text-foreground">
-              {intro}
-            
-            </p>
+            <p className="pb-4 text-center lg:text-left mt-10 text-xl text-foreground">{intro}</p>
 
             <ContactButton className="mt-10" />
           </div>

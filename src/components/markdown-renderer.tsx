@@ -9,7 +9,7 @@ import {
   TypographyH4,
   TypographyH1,
 } from '@/components/typography-components';
-import { CodeSnippet } from './code-snippet';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 const markdownComponents = {
   h1: TypographyH1,
@@ -22,7 +22,11 @@ const markdownComponents = {
     const match = /language-(\w+)/.exec(className || '');
 
     return !inline && match ? (
-      <CodeSnippet code={children} language={match[1]} {...props}></CodeSnippet>
+      <div className="relative my-5">
+        <SyntaxHighlighter className="rounded-lg" language={match[1]}>
+          {children}
+        </SyntaxHighlighter>
+      </div>
     ) : (
       // inline code style
       <code className="bg-gray-100 text-gray-800 font-mono text-sm px-1.5 py-0.5 rounded">{children}</code>
