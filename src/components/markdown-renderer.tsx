@@ -8,6 +8,7 @@ import {
   TypographyList,
   TypographyH4,
   TypographyH1,
+  TypographyBlockquote,
 } from '@/components/typography-components';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
@@ -17,6 +18,7 @@ const markdownComponents = {
   h3: TypographyH3,
   h4: TypographyH4,
   p: TypographyP,
+  blockquote: TypographyBlockquote,
   ul: ({ children }) => <TypographyList>{children}</TypographyList>,
   code({ node, inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || '');
