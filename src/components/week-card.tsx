@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { WeekEntry, DayEntry } from '@/types/diary';
-import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
 interface WeekCardProps {
@@ -14,84 +13,123 @@ function formatDate(date: Date): string {
 }
 
 export function WeekCard({ week }: WeekCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [days, setDays] = useState<DayEntry[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = async () => {
-    setIsExpanded(!isExpanded);
-
-    if (!isExpanded && !days.length) {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const startDate = formatDate(new Date(week.startDate));
-        const response = await fetch(`/api/week-days?start=${startDate}`);
-        if (!response.ok) throw new Error('Failed to fetch days');
-        const daysData = await response.json();
-
-        if (!Array.isArray(daysData)) {
-          throw new Error('Invalid response format');
-        }
-
-        // Sort days in descending order by date
-        const sortedDays = daysData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-        setDays(sortedDays);
-      } catch (error) {
-        console.error('Failed to fetch days:', error);
-        setError(error instanceof Error ? error.message : 'Failed to load days');
-        setIsExpanded(false);
-      } finally {
-        setIsLoading(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasLoaded) {
+            loadDays();
+            setHasLoaded(true);
+          }
+        });
+      },
+      {
+        rootMargin: '100px', // Start loading a bit before the card comes into view
+        threshold: 0
       }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasLoaded]);
+
+  const loadDays = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const startDate = formatDate(new Date(week.startDate));
+      const response = await fetch(`/api/week-days?start=${startDate}`);
+      if (!response.ok) throw new Error('Failed to fetch days');
+      const daysData = await response.json();
+
+      if (!Array.isArray(daysData)) {
+        throw new Error('Invalid response format');
+      }
+
+      const sortedDays = daysData.sort((a, b) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+      setDays(sortedDays);
+    } catch (error) {
+      console.error('Failed to fetch days:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load days');
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const DaySkeleton = () => (
+    <div className="animate-pulse">
+      <div className="absolute -left-[37px] w-3 h-3 rounded-full bg-border" />
+      <div className="h-4 w-32 bg-muted rounded mb-2" />
+      <div className="h-6 w-3/4 bg-muted rounded" />
+    </div>
+  );
+
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-      <div className="p-6 flex items-center justify-between cursor-pointer hover:bg-accent/50" onClick={handleClick}>
-        <div className="flex items-center gap-4">
-          <div className="text-4xl">{week.emoji}</div>
-          <div>
-            <p className="text-sm text-muted-foreground">Week {week.week}</p>
-            <p className="text-lg font-medium">{week.summary}</p>
-          </div>
+    <div className="relative" ref={cardRef}>
+      {/* Week Summary */}
+      <div className="flex items-start gap-6 mb-6">
+        <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center">
+          <span className="text-3xl">{week.emoji}</span>
         </div>
-        {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+        <div>
+          <div className="text-sm text-muted-foreground mb-1">Week {week.week}</div>
+          <h3 className="text-xl font-semibold mb-2">{week.summary}</h3>
+        </div>
       </div>
 
-      {isExpanded && (
-        <div className="px-6 pb-6 pt-2 space-y-4">
+      {/* Days Timeline */}
+      <div className="pl-8 ml-8 border-l border-border relative">
+        <div className="absolute top-0 bottom-0 -left-px w-px bg-border" />
+        <div className="space-y-8">
           {isLoading ? (
-            <div className="pt-5 text-sm text-muted-foreground">Loading days...</div>
+            <>
+              <div className="relative">
+                <DaySkeleton />
+              </div>
+              <div className="relative">
+                <DaySkeleton />
+              </div>
+              <div className="relative">
+                <DaySkeleton />
+              </div>
+            </>
           ) : error ? (
-            <div className="text-sm text-red-500">{error}</div>
-          ) : days.length === 0 ? (
-            <div className="text-sm text-muted-foreground">No entries for this week</div>
+            <div className="text-red-500">{error}</div>
           ) : (
-            <div className="space-y-3">
-              {days.map((day) => (
-                <Link key={day.date} href={`/diary/${day.date.split('T')[0]}`} className="block">
-                  <div className="rounded-lg border bg-card p-5 hover:bg-accent/50 transition-colors group">
-                    <time className="text-sm text-muted-foreground block mb-3">
-                      {new Date(day.date).toLocaleDateString('en-US', {
-                        weekday: 'long',
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </time>
-                    <h4 className="font-semibold text-lg group-hover:text-primary transition-colors mb-2">
-                      {day.summary}
-                    </h4>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            days.map((day) => (
+              <Link 
+                key={day.date} 
+                href={`/diary/${day.date.split('T')[0]}`}
+                className="block group relative"
+              >
+                <div className="absolute -left-[39px] w-3 h-3 rounded-full bg-border group-hover:bg-primary transition-colors" />
+                <time className="block text-sm text-muted-foreground mb-1">
+                  {new Date(day.date).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </time>
+                <h4 className="text-lg group-hover:text-primary transition-colors">
+                  {day.summary}
+                </h4>
+              </Link>
+            ))
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

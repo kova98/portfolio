@@ -35,50 +35,65 @@ export default async function DiaryPage() {
     <div className="flex flex-col min-h-screen">
       <Header home="/" />
 
-      <div className="container max-w-3xl py-6 space-y-8">
-        <div className="space-y-3">
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Dev Diary</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed pb-5">
+      <main className="container max-w-4xl py-12">
+        {/* Header Section */}
+        <div className="mb-12">
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl mb-4">
+            Dev Diary
+          </h1>
+          <p className="text-xl text-muted-foreground">
             Raw, uncensored look into my product building journey. I share my progress, learnings, feelings and
             challenges faced.
           </p>
-
-          <Link href="https://www.codeinteractive.dev">
-            <div className="flex items-center gap-6 mt-8 p-6 rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-background border">
-              <div className="shrink-0 h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <Image
-                  src="/projects/codeinteractive-logo.png"
-                  alt="logo"
-                  width={300}
-                  height={200}
-                  className="rounded-full"
-                />
-              </div>
-              <div className="space-y-1">
-                <div className="text-sm font-medium flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  Currently building
-                </div>
-                <div className="text-2xl font-bold text-primary">CodeInteractive</div>
-                <div className="text-sm text-muted-foreground">Interactive .NET tutorials platform</div>
-              </div>
-            </div>
-          </Link>
         </div>
 
-        <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight">Weekly Updates</h2>
-            <div className="text-sm text-muted-foreground">{weeks.length} weeks of progress</div>
+        {/* Current Project Banner */}
+        <Link 
+          href="https://www.codeinteractive.dev"
+          className="group block mb-16"
+        >
+          <div className="rounded-xl border bg-card p-8 hover:bg-accent/5 transition-all">
+            <div className="flex items-center gap-6 mb-4">
+              <div className="relative h-16 w-16">
+                <Image
+                  src="/projects/codeinteractive-logo.png"
+                  alt="CodeInteractive Logo"
+                  fill
+                  className="rounded-full object-cover"
+                  />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-primary mb-1 flex items-center gap-2">
+                  <Rocket className="h-4 w-4" />
+                  Currently Building
+                </div>
+                <h2 className="text-2xl font-semibold group-hover:text-primary transition-colors">
+                  Code Interactive
+                </h2>
+              </div>
+            </div>
+            <p className="text-muted-foreground text-lg">
+              Hands-on, addictive, interactive tutorials that teach you real-world .NET development
+            </p>
+          </div>
+        </Link>
+
+        {/* Timeline Section */}
+        <div className="relative">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-semibold">Journey Timeline</h2>
+            <div className="text-sm text-muted-foreground">
+              {weeks.length} weeks documented
+            </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-12">
             {weeks.map((week) => (
               <WeekCard key={week.week} week={week} />
             ))}
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

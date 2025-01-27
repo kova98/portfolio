@@ -34,7 +34,7 @@ const Home = () => {
       <Navbar />
 
       {/* Mobile Hero Section */}
-      <div className="flex flex-col h-screen justify-between items-center p-4 lg:hidden">
+      <div className="flex flex-col h-[calc(100vh-64px)] justify-between items-center p-4 lg:hidden">
         <div className={'flex-grow'}></div>
         <div className="flex flex-col items-center">
           <div className="relative w-48 h-48">
