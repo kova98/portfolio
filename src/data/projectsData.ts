@@ -25,11 +25,11 @@ const projectsData: Project[] = [
     websiteUrl: 'https://chat.rokokovac.com/',
   },
   {
-    title: 'Bazirano',
-    description: 'News site, aggregator, columns and discussion board',
-    technologies: ['ASP.NET Core 3 MVC', 'Bootstrap', 'Postgres', 'GitHub Actions'],
-    imageSrc: '/projects/bazirano.png',
-    repoUrl: 'https://github.com/kova98/Bazirano',
+    title: 'Code Interactive',
+    description: 'Interactive Learning Platform',
+    technologies: ['Go', 'TypeScript', 'NextJS', 'Docker'],
+    imageSrc: '/projects/codeinteractive.png',
+    websiteUrl: 'https://codeinteractive.dev',
   },
   {
     title: 'Manistra',
