@@ -16,7 +16,7 @@ const routeList: RouteProps[] = [
   { href: '/#projects', label: 'Projects', scroll: true },
   { href: '/#blog', label: 'Blog', scroll: true },
   { href: '/#contact', label: 'Contact', scroll: true },
-  { href: '/diary', label: 'Diary', scroll: false },
+  { href: 'https://www.devjourney.io/u/kova98', label: 'Journal', scroll: false },
 ];
 
 const scroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
