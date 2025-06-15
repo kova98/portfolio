@@ -2,8 +2,10 @@
 
 import { Button, buttonVariants } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Moon, Sun } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
+import * as React from 'react';
+import { useState } from 'react';
 
 interface RouteProps {
   href: string;
@@ -28,13 +30,7 @@ const scroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
   }
 };
 
-import { useTheme } from 'next-themes';
-import { ModeToggle } from '@/components/navbar/mode-toggle';
-import * as React from 'react';
-import { useState } from 'react';
-
 export default function Navbar() {
-  const theme = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -71,10 +67,7 @@ export default function Navbar() {
               </SheetContent>
             </Sheet>
           </div>
-
-          <div className={'absolute right-5 flex gap-2 items-center justify-center'}>
-            <ModeToggle />
-          </div>
+          
           <NavigationMenuItem className="hidden md:flex gap-2">
             {routeList.map((route: RouteProps, i) => (
               <a
