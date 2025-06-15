@@ -183,11 +183,11 @@ const skillsData: SkillCategories = {
       {
         tech: 'Go',
         img: 'go',
-        level: 'Beginner',
+        level: 'Intermediate',
         experience: '1 year',
         description:
-          'I learned Go in my free time for fun and have built a few small hobby projects with it. I hope to use it' +
-          ' professionally in the future.',
+          "I learned Go in my free time for fun and have built a few hobby projects with it. I've been using it " +
+          "professionally since September 2024.",
         references: [
           { name: 'Spiza - backend services', url: 'https://github.com/kova98/spiza/tree/main/src/services' },
           { name: 'Signer - JWT signature service', url: 'https://github.com/kova98/signer' },
