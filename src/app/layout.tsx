@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { PHProvider } from '@/components/providers/posthog-provider';
 import PostHogPageView from './PostHogPageView';
+import BarelyticsClient from '@/components/BarelyticsClient';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </PHProvider>
+      <BarelyticsClient />
     </html>
   );
 }

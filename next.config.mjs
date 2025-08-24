@@ -18,6 +18,10 @@ const nextConfig = {
         source: "/ingest/decide",
         destination: "https://eu.i.posthog.com/decide",
       },
+      {
+        source: '/event',
+        destination: 'https://api.barelytics.io/event',
+      },
     ];
   },
   // This is required to support PostHog trailing slash API requests
