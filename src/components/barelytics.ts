@@ -18,7 +18,7 @@ export function initAnalytics() {
   }
 
   const sessionId = getSessionId();
-  const backendUrl = 'http://localhost:8080/event';
+  const backendUrl = '/event';
 
   function sendEvent(type: string, extra: Record<string, any> = {}) {
     const payload = {
