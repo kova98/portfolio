@@ -8,8 +8,17 @@ export function initAnalytics() {
     return id;
   }
 
+  function getUserId() {
+    let userId = localStorage.getItem('barelytics_user_id');
+    if (!userId) {
+      userId = crypto.randomUUID();
+      localStorage.setItem('barelytics_user_id', userId);
+    }
+    return userId;
+  }
+
   const sessionId = getSessionId();
-  const backendUrl = '/event';
+  const backendUrl = 'http://localhost:8080/event';
 
   function sendEvent(type: string, extra: Record<string, any> = {}) {
     const payload = {
@@ -19,6 +28,7 @@ export function initAnalytics() {
       referrer: document.referrer,
       user_agent: navigator.userAgent,
       timestamp: new Date().toISOString(),
+      user_id: getUserId(),
       ...extra,
     };
     navigator.sendBeacon(backendUrl, JSON.stringify(payload));
