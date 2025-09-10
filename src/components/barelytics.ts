@@ -1,4 +1,6 @@
 export function initAnalytics() {
+  const backendUrl = '/event';
+
   function getSessionId() {
     const name = 'analytics_session=';
     const match = document.cookie.split('; ').find((row) => row.startsWith(name));
@@ -17,8 +19,60 @@ export function initAnalytics() {
     return userId;
   }
 
+  function detectDevice() {
+    const userAgent = navigator.userAgent;
+
+    // Device Type Detection
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+    const isTablet =
+      /iPad|Android(?=.*\bMobile\b)(?=.*(?:\bTablet\b|\bSM-T))|KFAPWI|LG-V909|SM-T|GT-P|SCH-I800|Kindle|Silk.*Accelerated|Android.*(?:\bTablet\b|\bSM-T|\bSCH-I800)/i.test(
+        userAgent
+      );
+
+    let deviceType = 'desktop';
+    if (isTablet) {
+      deviceType = 'tablet';
+    } else if (isMobile) {
+      deviceType = 'mobile';
+    }
+
+    // OS Detection
+    let device_os = 'unknown';
+    if (/Android/i.test(userAgent)) {
+      device_os = 'android';
+    } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+      device_os = 'ios';
+    } else if (/Macintosh|Mac OS X/i.test(userAgent)) {
+      device_os = 'macos';
+    } else if (/Windows NT/i.test(userAgent)) {
+      device_os = 'windows';
+    } else if (/Linux/i.test(userAgent) && !/Android/i.test(userAgent)) {
+      device_os = 'linux';
+    }
+
+    // Browser Detection
+    let device_browser = 'unknown';
+    if (/Chrome/i.test(userAgent) && !/Edge/i.test(userAgent)) {
+      device_browser = 'chrome';
+    } else if (/Firefox/i.test(userAgent)) {
+      device_browser = 'firefox';
+    } else if (/Safari/i.test(userAgent) && !/Chrome/i.test(userAgent)) {
+      device_browser = 'safari';
+    } else if (/Edge/i.test(userAgent)) {
+      device_browser = 'edge';
+    } else if (/Opera|OPR/i.test(userAgent)) {
+      device_browser = 'opera';
+    }
+
+    return {
+      device_type: deviceType,
+      device_os,
+      device_browser,
+    };
+  }
+
   const sessionId = getSessionId();
-  const backendUrl = '/event';
+  const deviceInfo = detectDevice();
 
   function sendEvent(type: string, extra: Record<string, any> = {}) {
     const payload = {
@@ -29,6 +83,7 @@ export function initAnalytics() {
       user_agent: navigator.userAgent,
       timestamp: new Date().toISOString(),
       user_id: getUserId(),
+      ...deviceInfo,
       ...extra,
     };
     navigator.sendBeacon(backendUrl, JSON.stringify(payload));
