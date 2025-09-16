@@ -4,7 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { PHProvider } from '@/components/providers/posthog-provider';
 import PostHogPageView from './PostHogPageView';
-import BarelyticsClient from '@/components/BarelyticsClient';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <Script
+          defer
+          src="https://cdn.barelytics.io/script.min.js"
+          data-url="/event"
+          data-id="not-implemented"
+        ></Script>
+      </head>
       <PHProvider>
         <body className={inter.className}>
           <PostHogPageView />
@@ -29,7 +36,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </PHProvider>
-      <BarelyticsClient />
     </html>
   );
 }
