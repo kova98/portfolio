@@ -13,6 +13,10 @@ const ContactButton: React.FC<ContactButtonProps> = ({ className }) => {
     const element = document.getElementById('contact');
     element?.scrollIntoView({ behavior: 'smooth' });
     postHog.capture('contact_button_clicked');
+    // Also track with Barelytics
+    if (typeof window !== 'undefined' && (window as any).barelytics) {
+      (window as any).barelytics.capture('contact_button_clicked');
+    }
   }
 
   return (

@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { PHProvider } from '@/components/providers/posthog-provider';
 import PostHogPageView from './PostHogPageView';
 import Script from 'next/script';
+import { BarelyticsTracker } from '@/components/barelytics-tracker';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
       <PHProvider>
         <body className={inter.className}>
           <PostHogPageView />
+          <BarelyticsTracker />
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             {children}
           </ThemeProvider>

@@ -55,6 +55,10 @@ export default function Navbar() {
                       href={route.href}
                       onClick={(e) => {
                         setIsOpen(false);
+                        // Track journal clicks
+                        if (route.label === 'Journal' && typeof window !== 'undefined' && (window as any).barelytics) {
+                          (window as any).barelytics.capture('journal_clicked');
+                        }
                         if (!route.scroll) return;
                         scroll(e, route.label.toLowerCase());
                       }}
@@ -78,6 +82,10 @@ export default function Navbar() {
                   variant: 'ghost',
                 })}`}
                 onClick={(e) => {
+                  // Track journal clicks
+                  if (route.label === 'Journal' && typeof window !== 'undefined' && (window as any).barelytics) {
+                    (window as any).barelytics.capture('journal_clicked');
+                  }
                   if (!route.scroll) return;
                   scroll(e, route.label.toLowerCase());
                 }}

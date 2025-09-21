@@ -14,6 +14,10 @@ const TrackedLink: React.FC<TrackedLinkProps> = ({ href, event, eventData, child
 
   function capture() {
     postHog.capture(event, eventData);
+    // Also track with Barelytics
+    if (typeof window !== 'undefined' && (window as any).barelytics) {
+      (window as any).barelytics.capture(event);
+    }
   }
 
   return (
