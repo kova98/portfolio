@@ -19,8 +19,8 @@ const nextConfig = {
         destination: "https://eu.i.posthog.com/decide",
       },
       {
-        source: '/event',
-        destination: 'https://api.barelytics.io/event',
+        source: '/i',
+        destination: 'https://api.barelytics.io/i',
       },
     ];
   },
