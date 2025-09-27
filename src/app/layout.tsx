@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <Script
           defer
-          src="https://cdn.barelytics.io/script.min.js"
+          src="https://cdn.barelytics.io/script.js"
           data-url="/i"
           data-id="fa655c01-8240-4ea4-b854-ce7840fb5ace"
         ></Script>
